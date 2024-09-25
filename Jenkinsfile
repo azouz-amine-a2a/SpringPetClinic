@@ -1,4 +1,15 @@
 pipeline{
+    stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool 'SonarQube Scanner'
+            withSonarQubeEnv('SonarQube9.6') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
+}
+
     agent{
         label ''
     }
